@@ -1,4 +1,5 @@
 .idea
 build
 *.pyc
+.gdb_history
 
