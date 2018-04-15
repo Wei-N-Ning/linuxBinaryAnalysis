@@ -24,7 +24,7 @@ function disassemble() {
     gdb -batch \
     -ex "set disassembly-flavor intel" \
     -ex "file ${binPath}" \
-    -ex "disassemble ${func}"
+    -ex "disassemble /rs ${func}"
 }
 
 compile
