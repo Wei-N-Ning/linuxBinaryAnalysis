@@ -5,6 +5,13 @@
 
 # $1: pid of an existing process
 # $2: (optional) output file path, by default is /tmp/out.txt
+#
+# NOTE:
+# for a heavy process (motionbuilder) the symbol list can be as large as 200M
+#
+# TODO:
+# 1) only collect the dynamic symbols (50% of weight), make it configurable
+# 2) filter out unwanted binary files (e.g. only collect from /vol, /digi, /lib)
 function dumpSymbols() {
     local _pid=${1:?missing pid}
     local outPath=${2:-/tmp/out.txt}
@@ -22,10 +29,13 @@ END {
         print arr[i]
     }
 }
-' | xargs nm -C --format=posix 1>>${outPath} 2>/dev/null
+' | xargs nm -D -C --format=posix 1>>${outPath} 2>/dev/null
 }
 
 # $1: file path of the symbol list
+# 
+# TODO:
+# ability to configure the filter
 function analyseSymbols() {
     awk '
 {
