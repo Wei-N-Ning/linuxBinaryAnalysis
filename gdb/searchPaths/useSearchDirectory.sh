@@ -44,6 +44,13 @@ int main() {
     mv /tmp/foo.* /tmp/main.c /tmp/sut/src
 }
 
+function do_gdb_fail() {
+    gdb /tmp/sut.o -batch \
+-ex "start" \
+-ex "list" \
+-ex "cont"
+}
+
 function do_gdb() {
     gdb -d /tmp/sut/src /tmp/sut.o -batch \
 -ex "start" \
@@ -52,5 +59,7 @@ function do_gdb() {
 }
 
 generateSUT
+do_gdb_fail
 do_gdb
+
 
