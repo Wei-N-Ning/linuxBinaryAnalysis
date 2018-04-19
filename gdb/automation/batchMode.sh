@@ -14,7 +14,7 @@ int main() {
     gcc -g -o /tmp/ido /tmp/ido.c
 }
 
-function run_gdb() {
+function runSutThenDumpRegisters() {
     gdb -batch \
 -ex "file /tmp/ido" \
 -ex "break ido" \
@@ -22,6 +22,13 @@ function run_gdb() {
 -ex "i r"
 }
 
+function listSutDebugSymbols() {
+    gdb -batch \
+-ex "file /tmp/ido" \
+-ex "i func"
+}
+
 compile
-run_gdb
+runSutThenDumpRegisters
+listSutDebugSymbols
 
