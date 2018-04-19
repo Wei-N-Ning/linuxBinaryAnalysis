@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# see: your applications vs gdb
+
 function compile() {
     echo "
 #include <map>
