@@ -1,12 +1,30 @@
 #!/usr/bin/env bash
 
+# usage (tcsh)
+# cgdb -- `srcdir`
+# gdb `srcdir`
+
 function gdbDirArgs() {
     python -c "
 import os
 import sys
 rootDir = sys.argv[1]
-extensions = set()
-excludedDirs = set()
+extensions = {
+    '.c', 
+    '.cc', 
+    '.cpp', 
+    '.cxx', 
+    '.h', 
+    '.hh', 
+    '.hpp'
+}
+excludedDirs = {
+    '.git', 
+    '.idea', 
+    '.vscode', 
+    'build', 
+    'cmake-build-debug'
+}
 for arg_ in sys.argv[2:]:
     if arg_.startswith('-'):
         excludedDirs.add(arg_[1:])
@@ -24,7 +42,7 @@ print ' '.join(dirs)
 }
 
 function run() {
-    gdb $( gdbDirArgs /work/dev/c/github.com/powergun/cexamples c h -.git -build -cmake-build-debug ) -batch -ex "show directories"
+    gdb $( gdbDirArgs /work/dev/c/github.com/powergun/cexamples ) -batch -ex "show directories"
 }
 
 run
