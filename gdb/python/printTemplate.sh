@@ -41,9 +41,9 @@ function testExecutable() {
 }
 
 function doPrint() {
-    gdb -batch \
--ex "file /tmp/_.o" \
--ex "i func"
+    gdb /tmp/_.o -batch \
+-ex "start" \
+-ex "frame"
 }
 
 compile
