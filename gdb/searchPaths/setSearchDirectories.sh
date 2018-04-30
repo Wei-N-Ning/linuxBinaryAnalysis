@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# there is a complete Python program called srcdir
+
 # usage (tcsh)
 # cgdb -- `srcdir`
 # gdb `srcdir`
