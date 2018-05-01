@@ -87,7 +87,6 @@ BEGIN {
 END {
   for (i = 1; i <= total; i++) {
     print "commands", i;
-    /* print "info args"; */
     print "backtrace 2";
     print "continue";
     print "end";
