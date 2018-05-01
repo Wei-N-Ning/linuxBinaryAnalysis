@@ -19,17 +19,17 @@ function verify_readelf() {
     readelf -p .debug_info ${binPath} 2>/dev/null | wc -l
 }
 
-function demo_withDebugInfo() {
-    buildSUT "-g"
-    verify_objdump
-    assertNotZero $( verify_readelf )
-}
-
 function demo_withoutDebugInfo() {
     buildSUT
     verify_objdump
     assertZero $( verify_readelf )
 }
 
-demo_withDebugInfo
+function demo_withDebugInfo() {
+    buildSUT "-g"
+    verify_objdump
+    assertNotZero $( verify_readelf )
+}
+
 demo_withoutDebugInfo
+demo_withDebugInfo
