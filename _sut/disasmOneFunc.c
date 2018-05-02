@@ -25,5 +25,7 @@ void test_nothing() {
 
 int main(int argc, char **argv) {
     test_nothing();
+    struct Unpacked u;
+    struct Packed p;
     return 0;
 }
