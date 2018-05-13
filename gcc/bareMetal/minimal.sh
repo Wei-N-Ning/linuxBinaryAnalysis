@@ -22,7 +22,11 @@ function compileCLANG() {
 }
 
 function test() {
-    ${out}
+    if ! ( ${out} )
+    then
+        echo "crash!"
+        exit 1
+    fi
 }
 
 function run() {
