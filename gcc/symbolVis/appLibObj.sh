@@ -12,6 +12,9 @@
 
 source "commonutils.sh"
 
+# clang behaves exactly the same
+cCompiler=gcc
+
 function createSourceFiles() {
     echo "
 typedef struct __Stack Stack;
@@ -48,20 +51,20 @@ int main(int argc, char **argv) {
 }
 
 function buildCore() {
-    gcc -Wall -fPIC ${1} -c -I${sutdir} -o ${sutdir}/core.o ${sutdir}/core.c
+    ${cCompiler} -Wall -fPIC ${1} -c -I${sutdir} -o ${sutdir}/core.o ${sutdir}/core.c
 }
 
 function buildModel() {
-    gcc -Wall -fPIC ${1} -c -I${sutdir} -o ${sutdir}/model.o ${sutdir}/model.c
+    ${cCompiler} -Wall -fPIC ${1} -c -I${sutdir} -o ${sutdir}/model.o ${sutdir}/model.c
 }
 
 function buildMain() {
-    gcc -Wall ${1} -c -I${sutdir} -o ${sutdir}/main.o ${sutdir}/main.c
+    ${cCompiler} -Wall ${1} -c -I${sutdir} -o ${sutdir}/main.o ${sutdir}/main.c
 }
 
 function buildAppUsingObjs() {
     rm -f ${sutdir}/out
-    gcc -Wall -o ${sutdir}/out ${sutdir}/main.o ${sutdir}/model.o ${sutdir}/core.o
+    ${cCompiler} -Wall -o ${sutdir}/out ${sutdir}/main.o ${sutdir}/model.o ${sutdir}/core.o
 }
 
 function buildSTLib() {
@@ -70,16 +73,16 @@ function buildSTLib() {
 
 function buildAppUsingSTLib() {
     rm -f ${sutdir}/out
-    gcc -Wall -o ${sutdir}/out ${sutdir}/main.o ${sutdir}/lib.a
+    ${cCompiler} -Wall -o ${sutdir}/out ${sutdir}/main.o ${sutdir}/lib.a
 }
 
 function buildSHLib() {
-    gcc -Wall -shared ${1} -o ${sutdir}/libmodel.so ${sutdir}/model.o ${sutdir}/core.o
+    ${cCompiler} -Wall -shared ${1} -o ${sutdir}/libmodel.so ${sutdir}/model.o ${sutdir}/core.o
 }
 
 function buildAppUsingSHLib() {
     rm -f ${sutdir}/out
-    gcc -Wall -o ${sutdir}/out ${sutdir}/main.o -L${sutdir} -lmodel
+    ${cCompiler} -Wall -o ${sutdir}/out ${sutdir}/main.o -L${sutdir} -lmodel
 }
 
 function verifyBuild() {

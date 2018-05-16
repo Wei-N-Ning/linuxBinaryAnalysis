@@ -6,6 +6,9 @@
 # app uses a subroutine exposed from the lib 
 # the visibility of the symbols in lib and app does not really matter
 
+# to re-emphasize: to plain .o files and static library, symbol
+# visibility do not affect the user
+
 source commonutils.sh
 
 function createSUTSourceFiles() {
