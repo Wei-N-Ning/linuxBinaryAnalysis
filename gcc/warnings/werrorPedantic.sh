@@ -2,7 +2,7 @@
 
 # encourage the use of -Wall -Werror -Wpedantic
 
-function demo() {
+function Werror() {
     echo "
 main() {
 }
@@ -16,4 +16,4 @@ main() {
     ! ( gcc ${flags} ${ioflags} 2>/dev/null ) && echo "should fail"
 }
 
-demo
+Werror
