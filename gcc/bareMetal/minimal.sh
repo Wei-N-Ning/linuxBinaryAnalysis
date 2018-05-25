@@ -18,7 +18,7 @@ void _start() {
 
 # this is to show that even with -nostdlib
 # one can still use pthread and write()
-# 
+#
 # source:
 # https://linux.die.net/man/2/write
 # https://stackoverflow.com/questions/3866217/how-can-i-make-the-system-call-write-print-to-the-screen
