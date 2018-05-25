@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function buildSUTProgram() {
+buildSUT() {
     cat > /tmp/_.c <<EOF
 void main(void) {
     int x = -0x10001234, y = 0x10001234;
@@ -18,7 +18,7 @@ EOF
     fi
 }
 
-function runTests() {
+examineMemHex() {
     cat > /tmp/_.gdb <<EOF
 start
 n
@@ -33,5 +33,15 @@ EOF
     gdb --batch --command=/tmp/_.gdb /tmp/_
 }
 
-buildSUTProgram
-runTests
+examineMemString() {
+    echo "
+start
+n
+x/s &x
+" > /tmp/_.gdb
+    gdb --batch --command=/tmp/_.gdb /tmp/_
+}
+
+buildSUT
+examineMemHex
+examineMemString
