@@ -4,7 +4,7 @@
 # https://stackoverflow.com/questions/26943102/how-to-set-runpath-of-a-binary
 # http://blog.tremily.us/posts/rpath/
 #
-# the form is
+# how to set runpath:
 # -Wl,-rpath=/a/b/c -Wl,--enable-new-dtags
 
 setUp() {
@@ -50,10 +50,16 @@ setUp
 buildSharedLib
 buildAPP "../libs"
 
-# prefer optimized libraries, which are stored in /tmp/vol/opt/libs
-# this is managed by some environment configuration system
+# Scenario 1:
+# user environment has an optimized library, in this case the linker
+# prefers optimized libraries which are stored in /tmp/vol/opt/libs
+# taking advantage of LD_LIBRARY_PATH
+# this path is usually managed by some user configuration system
 LD_LIBRARY_PATH=/tmp/vol/opt/libs runAPP
 
+# Scenario 2:
+# user wants to directly use the application without providing
+# any library
 # if this optimized lib does not exist, fall back to the default
-# library in /tmp/vol/libs
+# library in /tmp/vol/libs taking advantage of runpath
 runAPP
