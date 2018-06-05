@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# source:
+# strstr:
+# http://www.cplusplus.com/reference/cstring/strstr/
+# fread/fopen/fclose
+# https://www.tutorialspoint.com/c_standard_library/c_function_fread.htm
+# https://www.tutorialspoint.com/c_standard_library/c_function_fopen.htm
+
 setUp() {
     set -e
 }
