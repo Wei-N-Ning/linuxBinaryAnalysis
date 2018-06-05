@@ -86,7 +86,12 @@ runSUT
 # note that the rpath argument has to use $ORIGIN
 # here is a test case where the app and its bundled lib are
 # copied to a different location (/tmp/dup) then executed
-buildSUT "\$ORIGIN/../libs" "-Wl,-z,origin"
+# NOTE:
+# $ORIGIN:$ORIGIN/../libs stores two paths:
+# 1) the current (dir) path of the executable
+# 2) the libs sibling directory
+# this is not uncommon in commerical software: Maya, VSCode etc.
+buildSUT "\$ORIGIN:\$ORIGIN/../libs" "-Wl,-z,origin"
 readelf -d /tmp/sut/app | grep ORIGIN
 deployLibAndSUTSeparately
 cp -r /tmp/deployed /tmp/dup
