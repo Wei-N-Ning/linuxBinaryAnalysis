@@ -5,18 +5,20 @@ buildSUT() {
 #include <stdio.h>
 #include <sys/ptrace.h>
 
-int main()
-{
-    if (ptrace(PTRACE_TRACEME, 0, 1, 0) == -1) 
-        {
-                printf("don't trace me !!\n");
-                        return 1;
-                            }
-                                // normal execution
-                                    return 0;
-                                    }
+int main() {
+    if (ptrace(PTRACE_TRACEME, 0, 1, 0) == -1) {
+        printf("don't trace me !!\n");
+        return 1;
+    }
+    // normal execution
+    return 0;
+}
 EOF
     gcc -o /tmp/_ /tmp/_.c
+}
+
+runSUT() {
+    /tmp/_ && echo "sut exits with 0"
 }
 
 runSUTInGDB() {
@@ -25,5 +27,6 @@ runSUTInGDB() {
 
 set -e
 buildSUT
+runSUT
 runSUTInGDB
 
