@@ -17,11 +17,16 @@ EOF
     gcc -o /tmp/_ /tmp/_.c
 }
 
+runSUT() {
+    /tmp/_ && echo "sut exits with 0"
+}
+
 runSUTInGDB() {
     gdb -batch -ex "run" /tmp/_
 }
 
 set -e
 buildSUT
+runSUT
 runSUTInGDB
 
