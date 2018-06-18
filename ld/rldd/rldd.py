@@ -82,5 +82,7 @@ class RLDD(object):
 
 
 if __name__ == '__main__':
-    pass
+    import sys
+    assert len(sys.argv) > 1
+    RLDD().process(sys.argv[1])
 
