@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+# require the build system to populate .GCC.command.line section
+# see wkou/devOps documents for details
+
 import re
 import subprocess
 import shlex
