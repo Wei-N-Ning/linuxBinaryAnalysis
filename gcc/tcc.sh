@@ -26,7 +26,7 @@ setUp() {
 }
 
 buildProgram() {
-    ${CC} $1 -o ${OUT_FILE}
+    ${CC} $1 ${FLAGS} -o ${OUT_FILE}
 }
 
 runProgram() {
@@ -34,7 +34,6 @@ runProgram() {
 }
 
 tearDown() {
-    rm -rf ${SUT}
     echo "DONE"
 }
 
