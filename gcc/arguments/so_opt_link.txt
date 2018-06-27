@@ -1,0 +1,46 @@
+"""
+These arguments are seen in wt's ko project.
+
+It uses gcc/g++ as the linker front-end.
+"""
+
+-Wl,-rpath,${ORIGIN}
+-Wl,Bsymbolic
+
+-Wl,--start-group
+https://stackoverflow.com/questions/5651869/gcc-what-are-the-start-group-and-end-group-command-line-options
+
+-L/a/b/c/lib
+-Wl,-rpath,/a/b/c/lib
+-pipe -march=core2 -mtune=corei7 -m64 -mmmx -msse -msse2 -msse3 -mssse3 -mfpmath=sse -fPIC -DBits64_  
+-fmessage-length=0 -fno-dollars-in-identifiers -frecord-gcc-switches -Wall -Wpointer-arith -Wcast-qual -Wwrite-strings -Wmissing-format-attribute -Wpacked -Winvalid-pch -Winit-self -Wundef
+-pthread -fopenmp -std=c++11 -ffor-scope -fno-gnu-keywords -Wnon-virtual-dtor -Woverloaded-virtual -Wsign-promo -Wno-invalid-offsetof -Wno-undef -Wno-sign-promo -Wno-cast-qual -Wno-comment -Wno-unused-local-typedefs -Wunintialized -fomit-frame-pointer -fvisibility-inlines-hidden -fPIC -ffunction-sections -fdata-sections -ftrack-macro-expansion=1 -Wno-unused-local-typedefs -disable-free -disable-llvm-verifier -mrelocation-model 
+static
+-mrelax-all -fmath-errno -masm-verbose -mconstructor-aliases -munwind-tables -fuse-init-array -mdisable-fp-elim -target-cpu x86-64 -target-linker-version 2.22 -momit-leaf-frame-pointer -resource-dir ../lib/clang/5.0.0 -fdeprecated-macro -ferror-limit 19 -fmessage-length 238 -mstackrealign -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -Wno-deprecated-declarations -fcolor-diagnostics -vectorize-loops -vectorize-slp -Wno-nonportable-include-path 
+-DKORU_CLANG_EXT_INCLUDES="/a/b/c /b/c/d"
+-g -ggdb3 -feliminate-unused-debug-types -O3
+-DNDEBUG
+-fno-strict-aliasing -Wdisabled-optimization
+-shared -L/a/b/c/lib
+-Wl,-rpath,/a/b/c/lib
+-Wl,--allow-shlib-undefined 
+-Wl,--enable-new-dtags
+-Wl,--no-as-needed
+
+# optionally:
+-Wl,--version-script,/a/b/c/nm_linkmap.map
+
+/ab/cd/ef/nm.o
+-labc
+-lbcd
+-Wl,--exclude-libs,libabc.a
+
+# llvm link arguments
+
+-Wl,/ab/cd/ef/gh/libabcdef.a
+-o /a/b/c/d/nm.so
+-Wl,--end-group
+
+
+
+

@@ -1,0 +1,223 @@
+"""
+These arguments are seen in wt's ko project.
+"""
+
+cxx
+
+-I/a/b/c 
+
+-pipe
+use pipe to communicate between various stage of compilations instead of using temporary files
+
+-march=core2 
+Generate instructions for the machine type cpu-type. In contrast to -mtune=cpu-type, which merely tunes the generated code for the specified cpu-type, -march=cpu-type allows GCC to generate code that may not run at all on processors other than the one indicated. Specifying -march=cpu-type implies -mtune=cpu-type.
+Intel Core 2 CPU with 64-bit extensions, MMX, SSE, SSE2, SSE3 and SSSE3 instruction set support. 
+
+-mtune=corei7 
+Tune to cpu-type everything applicable about the generated code, except for the ABI and the set of available instructions. While picking a specific cpu-type schedules things appropriately for that particular chip, the compiler does not generate any code that cannot run on the default machine type unless you use a -march=cpu-type option. For example, if GCC is configured for i686-pc-linux-gnu then -mtune=pentium4 generates code that is tuned for Pentium 4 but still runs on i686 machines.
+
+-m64 
+The -m64 option sets int to 32 bits and long and pointer types to 64 bits, and generates code for the x86-64 architecture. For Darwin only the -m64 option also turns off the -fno-pic and -mdynamic-no-pic options.
+
+-mmmx -msse -msse2 -msse3 -mssse3 
+
+-mfpmath=sse 
+Generate floating-point arithmetic for selected unit unit.
+
+-fPIC 
+
+-fmessage-length=0 
+Try to format error messages so that they fit on lines of about n characters. The default is 72 characters for g++ and 0 for the rest of the front ends supported by GCC. If n is zero, then no line-wrapping is done; each error message appears on a single line. 
+
+-fno-dollars-in-identifiers 
+name mangling
+
+-frecord-gcc-switches
+This switch causes the command line used to invoke the compiler to be recorded into the object file that is being created.
+```
+readelf -p .GCC.command.line ./a.out
+```
+
+-Wall 
+
+-Wpointer-arith
+In GNU C, addition and subtraction operations are supported on pointers to void and on pointers to functions. This is done by treating the size of a void or of a function as 1.
+The option -Wpointer-arith requests a warning if these extensions are used.
+```
+(tensor) wein@gunship:/tmp$ gcc -Wpointer-arith ./test.c 
+./test.c: In function ‘main’:
+./test.c:3:6: warning: wrong type argument to increment [-Wpointer-arith]
+     p++;
+      ^
+```
+
+-Wcast-qual 
+Warn whenever a pointer is cast so as to remove a type qualifier from the target type. For example, warn if a const char * is cast to an ordinary char *.
+
+-Wwrite-strings
+When compiling C, give string constants the type const char[length] so that copying the address of one into a non-const char * pointer produces a warning. 
+
+-Wmissing-format-attribute
+
+-Wpacked 
+Warn if a structure is given the packed attribute, but the packed attribute has no effect on the layout or size of the structure.
+
+-Winvalid-pch
+Warn if a precompiled header is found in the search path but can't be used. 
+
+-Winit-self 
+```
+int i = i;
+```
+
+-Wundef
+Warn if an undefined identifier is evaluated in an ‘#if’ directive. 
+
+-pthread 
+Adds support for multithreading with the pthreads library. This option sets flags for both the preprocessor and linker. 
+
+-fopenmp 
+Enable handling of OpenMP directives #pragma omp in C/C++ and !$omp in Fortran. When -fopenmp is specified, the compiler generates parallel code according to the OpenMP Application Program Interface v3.0 http://www.openmp.org/. This option implies -pthread, and thus is only supported on targets that have support for -pthread. 
+
+-std=c++11 
+
+-ffor-scope 
+If -ffor-scope is specified, the scope of variables declared in a for-init-statement is limited to the ‘for’ loop itself, as specified by the C++ standard. If -fno-for-scope is specified, the scope of variables declared in a for-init-statement extends to the end of the enclosing scope, as was the case in old versions of G++, and other (traditional) implementations of C++.
+
+-fno-gnu-keywords 
+Do not recognize typeof as a keyword, so that code can use this word as an identifier. You can use the keyword __typeof__ instead. -ansi implies -fno-gnu-keywords. 
+
+-Wnon-virtual-dtor
+Warn when a class has virtual functions and an accessible non-virtual destructor, in which case it is possible but unsafe to delete an instance of a derived class through a pointer to the base class. This warning is also enabled if -Weffc++ is specified [When selecting this option, be aware that the standard library headers do not obey all of these guidelines; use ‘grep -v’ to filter out those warnings.]
+
+-Woverloaded-virtual
+Warn when a function declaration hides virtual functions from a base class
+
+-Wsign-promo 
+Warn when overload resolution chooses a promotion from unsigned or enumerated type to a signed type, over a conversion to an unsigned type of the same size. Previous versions of G++ tried to preserve unsignedness, but the standard mandates the current behavior.
+
+-Wno-invalid-offsetof
+Suppress warnings from applying the ‘offsetof’ macro to a non-POD type.
+
+-Wno-undef -Wno-sign-promo -Wno-cast-qual 
+
+-Wno-comment
+Wcomment: Warn whenever a comment-start sequence ‘/*’ appears in a ‘/*’ comment, or whenever a Backslash-Newline appears in a ‘//’ comment. This warning is enabled by -Wall.
+
+-Wno-unused-local-typedefs 
+ 
+-Wunintialized 
+Warn if an automatic variable is used without first being initialized or if a variable may be clobbered by a setjmp call. In C++, warn if a non-static reference or non-static ‘const’ member appears in a class without constructors.
+
+-fomit-frame-pointer
+makes debugging impossible on some machines.
+
+-fvisibility-inlines-hidden 
+
+-fPIC 
+
+-ffunction-sections 
+You cannot use gprof on all systems if you specify this option, and you may have problems with debugging if you specify both this option and -g. 
+
+-fdata-sections
+You cannot use gprof on all systems if you specify this option, and you may have problems with debugging if you specify both this option and -g. 
+
+-ftrack-macro-expansion=1
+Track locations of tokens across macro expansions. This allows the compiler to emit diagnostic about the current macro expansion stack when a compilation error occurs in a macro expansion. Using this option makes the preprocessor and the compiler consume more memory.
+
+-Wno-unused-local-typedefs 
+
+-disable-free 
+
+-disable-llvm-verifier 
+
+-mrelocation-model 
+
+-static
+
+-mrelax-all 
+
+-fmath-errno
+The default is -fmath-errno.
+
+-masm-verbose 
+
+-mconstructor-aliases 
+
+-munwind-tables 
+
+-fuse-init-array 
+
+-mdisable-fp-elim 
+
+-target-cpu x86-64 
+
+-target-linker-version 2.22 
+
+-momit-leaf-frame-pointer 
+
+-resource-dir ../lib/clang/5.0.0 
+
+-fdeprecated-macro 
+
+-ferror-limit 19 
+
+-fmessage-length 238 
+
+-mstackrealign 
+
+-fobjc-runtime=gcc 
+
+-fcxx-exceptions 
+
+-fexceptions 
+
+-fdiagnostics-show-option 
+
+-Wno-deprecated-declarations
+Do not warn about uses of functions (see Function Attributes), variables (see Variable Attributes), and types (see Type Attributes) marked as deprecated by using the deprecated attribute. 
+
+-fcolor-diagnostics 
+
+-vectorize-loops 
+
+-vectorize-slp 
+
+-Wno-nonportable-include-path 
+
+-g 
+
+-ggdb3 
+Produce debugging information for use by GDB. This means to use the most expressive format available (DWARF 2, stabs, or the native format if neither of those are supported), including GDB extensions if at all possible. 
+Level 3 includes extra information, such as all the macro definitions present in the program. Some debuggers support macro expansion when you use -g3.
+
+-feliminate-unused-debug-types 
+Normally, when producing DWARF 2 output, GCC avoids producing debug symbol output for types that are nowhere used in the source file being compiled. Sometimes it is useful to have GCC emit debugging information for all types declared in a compilation unit, regardless of whether or not they are actually used in that compilation unit, for example if, in the debugger, you want to cast a value to a type that is not actually used in your program (but is declared). More often, however, this results in a significant amount of wasted space.
+
+-O3
+
+-fno-strict-aliasing 
+
+-Wdisabled-optimization
+Warn if a requested optimization pass is disabled. This warning does not generally indicate that there is anything wrong with your code; it merely indicates that GCC's optimizers are unable to handle the code effectively. Often, the problem is that your code is too big or too complex; GCC refuses to optimize programs when the optimization itself is likely to take inordinate amounts of time. 
+
+-MD
+-MD is equivalent to -M -MF file, except that -E is not implied. The driver determines file based on whether an -o option is given. If it is, the driver uses its argument but with a suffix of .d, otherwise it takes the name of the input file, removes any directory components and suffix, and applies a .d suffix.
+If -MD is used in conjunction with -E, any -o switch is understood to specify the dependency output file (see -MF), but if used without -E, each -o is understood to specify a target object file.
+Since -E is not implied, -MD can be used to generate a dependency output file as a side-effect of the compilation process. 
+
+-Wp,-MF,/a/b/c/nm.cc.d
+You can use -Wp,option to bypass the compiler driver and pass option directly through to the preprocessor. If option contains commas, it is split into multiple options at the commas. However, many options are modified, translated or interpreted by the compiler driver before being passed to the preprocessor, and -Wp forcibly bypasses this phase. The preprocessor's direct interface is undocumented and subject to change, so whenever possible you should avoid using -Wp and let the driver handle the options instead. 
+-MF file: When used with -M or -MM, specifies a file to write the dependencies to. If no -MF switch is given the preprocessor sends the rules to the same place it would have sent preprocessed output.
+When used with the driver options -MD or -MMD, -MF overrides the default dependency output file.
+
+-I/a/b/c
+
+-c
+
+src/a/b/c/nm.cc
+
+-o /a/b/c/d/nm.o
+
+
+
