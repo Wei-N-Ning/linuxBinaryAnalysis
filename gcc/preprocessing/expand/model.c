@@ -6,6 +6,8 @@
 
 // variadic pronounces [vari'adic]
 
+void BEGIN_SOURCE() {}
+
 #define MAX2(a, b) ((a) > (b) ? (a) : (b))
 #ifdef DEBUG
     #include <assert.h>
@@ -47,3 +49,6 @@ void setRoot(struct Model *model, struct ModelItem *root) {
     }
     model->root = root;
 }
+
+void END_SOURCE() {}
+

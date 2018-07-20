@@ -25,6 +25,10 @@
 #    printf("set root");
 function expandGCC() {
     gcc -DDEBUG -E -o /tmp/_.i model.c
+    echo "
+/////////// GCC preprocessor ///////////
+"
+    cat /tmp/_.i
 }
 
 # CLANG's expanded code looks nicer
@@ -39,7 +43,13 @@ function expandGCC() {
 #}
 function expandCLANG() {
     clang -DDEBUG -E -o /tmp/_.i model.c
+    echo "
+/////////// clang preprocessor ////////////
+"
+    cat /tmp/_.i
 }
 
 expandGCC
-expandCLANG
+( which clang >/dev/null 2>&1 && expandCLANG )
+
+exit 0
